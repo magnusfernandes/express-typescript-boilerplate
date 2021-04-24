@@ -1,0 +1,130 @@
+POST http://localhost:4000/entries/publish
+Content-Type: application/json
+
+{
+  "id": "84776b36-d1ae-4e04-8f1e-b1eb65da2ac2",
+  "version": 23,
+  "data": [{
+      "question": "Could you please tell us your age?",
+      "time": 1.62,
+      "response": "Below 30 years"
+    },
+    {
+      "question": "Please select your gender?",
+      "time": 2.332,
+      "response": "Male"
+    },
+    {
+      "question": "What is the nature of your profession?",
+      "time": 3.842,
+      "response": "Business person"
+    },
+    {
+      "question": "What type of family you stay in?",
+      "time": 5.605,
+      "response": "Nuclear – (Husband, wife & kids, with parents)"
+    },
+    {
+      "question": "What is your relationship status?",
+      "time": 6.765,
+      "response": "Single"
+    },
+    {
+      "question": "What income group would suit you the most (Annual Income)?",
+      "time": 8.412,
+      "response": "INR 12 Lakhs – INR 25 Lakhs"
+    },
+    {
+      "question": "What is your highest qualification?",
+      "time": 10.359,
+      "response": "Graduate / post graduate professional"
+    },
+    {
+      "question": "Which companies or individuals (NOT CA’s and accountants) come to your mind when I say a wealth management company / wealth manager / financial planner?",
+      "time": 15.869,
+      "response": "Test"
+    },
+    {
+      "question": "From the following list of wealth management companies / wealth managers / financial planners which one are you aware of?",
+      "time": 18.777,
+      "response": ["IIFL Wealth", "Jennifer Mendes"]
+    },
+    {
+      "question": "Do you have a financial plan?",
+      "time": 19.926,
+      "response": "No"
+    },
+    {
+      "question": "Currently who guides you in your financial planning?",
+      "time": null
+    },
+    {
+      "question": "How important do you think financial planning is?",
+      "time": 21.467,
+      "response": "Not important"
+    },
+    {
+      "question": "Which statement would suit you best when it comes to following or adhering to your financial plan?",
+      "time": null
+    },
+    {
+      "question": "Approximately, how would your yearly income distribution look like in percentage(%)?",
+      "time": 29.262,
+      "response": [59, 34, 0, 0]
+    },
+    {
+      "question": "Approximately, how would your yearly expense allocation look like in percentage(%)",
+      "time": 34.952,
+      "response": [0, 24, 71, 0]
+    },
+    {
+      "question": "Which of the following asset classes do you invest in?",
+      "time": 36.808,
+      "response": ["Gold"]
+    },
+    {
+      "question": "Currently are you working with any wealth management companies / wealth managers / financial planners?",
+      "time": 37.825,
+      "response": "No"
+    },
+    {
+      "question": "Primarily, what type of wealth management company / wealth manager / financial planner are you working with?",
+      "time": null
+    },
+    {
+      "question": "What other type of wealth management company / wealth manager / financial planner are you working with?",
+      "time": null
+    },
+    {
+      "question": "How long have you been working with this wealth management company / wealth manager / financial planner?",
+      "time": null
+    },
+    {
+      "question": "On a scale of 1 – 5 how important do you think financial planning is?",
+      "time": null
+    },
+    {
+      "question": "Why have you not given a try to the services of wealth management companies / wealth managers / financial planners?",
+      "time": 39.857,
+      "response": ["They don’t give enough time"]
+    },
+    {
+      "question": "What is your objective in hiring wealth management company / wealth manager / financial planner?",
+      "time": null
+    },
+    {
+      "question": "What would be your objective in hiring wealth management company / wealth manager / financial planner?",
+      "time": 41.235,
+      "response": ["Guidance on the right financial product"]
+    },
+    {
+      "question": "What skills / capabilities do you seek in a wealth management company / wealth manager / financial planner?",
+      "time": null
+    },
+    {
+      "question": "What skills / capabilities would you seek in a wealth management company / wealth manager / financial planner?",
+      "time": 47.046,
+      "response": ["Ability to understand the requirement"]
+    }
+  ]
+}

@@ -1,5 +1,4 @@
-import { AuthActions } from './authActions';
+import { AuthActions } from "./authActions";
+import { EntryActions } from "./entryActions";
 
-export {
-  AuthActions
-}
+export { AuthActions, EntryActions };

@@ -1,23 +1,29 @@
 {
   "development": {
-    "username": "infamousbazooka",
+    "username": "quantifys",
     "password": "changeme123",
-    "database": "menuapp_development",
+    "database": "shramikapp_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "menuapp_test",
+    "database": "shramikapp_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "menuapp_production",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "username": "quantifys",
+    "password": "changeme",
+    "database": "shramikapp_production",
+    "logging": false,
+    "pool": {
+      "max": 10,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 5000
+    }
   }
 }

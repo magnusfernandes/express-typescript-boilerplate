@@ -15,8 +15,9 @@
   },
   "production": {
     "dialect": "postgres",
-    "username": "quantifys",
-    "password": "changeme",
+    "host": "127.0.0.1",
+    "username": "letsrateitadmin",
+    "password": "zzzpqow1029",
     "database": "letsrateit_production",
     "logging": false,
     "pool": {

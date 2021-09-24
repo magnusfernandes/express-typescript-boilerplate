@@ -2,13 +2,31 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('organisations', {
+    return queryInterface.createTable('addresses', {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.literal('uuid_generate_v4()'),
         primaryKey: true
       },
-      name: {
+      line1: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      line2: Sequelize.STRING,
+      landmark: Sequelize.STRING,
+      city: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      state: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      country: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      postal_code: {
         allowNull: false,
         type: Sequelize.STRING
       },
@@ -24,6 +42,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('organisations');
+    return queryInterface.dropTable('addresses');
   }
 };

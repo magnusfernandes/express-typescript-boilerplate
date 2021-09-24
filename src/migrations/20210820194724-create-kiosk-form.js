@@ -2,16 +2,14 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('organisations', {
+    return queryInterface.createTable('kiosk_forms', {
       id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.literal('uuid_generate_v4()'),
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        autoIncrement: true,
         primaryKey: true
       },
-      name: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
+      attributes: Sequelize.JSONB,
       created_at: {
         allowNull: false,
         type: Sequelize.DATE
@@ -24,6 +22,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('organisations');
+    return queryInterface.dropTable('kiosk_forms');
   }
 };

@@ -1,44 +1,37 @@
-import { Optional, Model, BuildOptions, Sequelize, DataTypes } from "sequelize";
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+} from "sequelize";
+import { dbConfig } from "./config";
 
-export interface UserOtpAttributes {
-  id: number;
-  userId: number;
-  code: string;
-  retries: number;
-  sentAt: Date;
-  usedAt: Date;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
-export interface UserOtpCreationAttributes extends Optional<UserOtpAttributes, "id"> { }
-
-export class UserOtpModel extends Model<UserOtpAttributes, UserOtpCreationAttributes> implements UserOtpAttributes {
-  id!: number;
-  userId!: number;
-  code!: string;
-  retries!: number;
-  sentAt!: Date;
-  usedAt!: Date;
+export class UserOtp extends Model<
+  InferAttributes<UserOtp>,
+  InferCreationAttributes<UserOtp>
+> {
+  declare id: CreationOptional<number>;
+  declare userId: number;
+  declare code: string;
+  declare retries: CreationOptional<number>;
+  declare sentAt: CreationOptional<Date>;
+  declare usedAt: CreationOptional<Date>;
 
   // timestamps!
-  readonly createdAt!: Date;
-  readonly updatedAt!: Date;
+  declare readonly createdAt: CreationOptional<Date>;
+  declare readonly updatedAt: CreationOptional<Date>;
 }
 
-export type UserOtpStatic = typeof Model & {
-  new(values?: object, options?: BuildOptions): UserOtpModel;
-};
-
-export function UserOtpFactory(config: Sequelize) {
-  return <UserOtpStatic>config.define("userOtps", {
+UserOtp.init(
+  {
     id: {
       type: DataTypes.BIGINT,
       autoIncrement: true,
       primaryKey: true,
     },
     userId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false,
     },
     code: {
@@ -47,6 +40,12 @@ export function UserOtpFactory(config: Sequelize) {
     },
     retries: DataTypes.INTEGER,
     sentAt: DataTypes.DATE,
-    usedAt: DataTypes.DATE
-  });
-};
+    usedAt: DataTypes.DATE,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+  },
+  {
+    tableName: "userOtps",
+    sequelize: dbConfig,
+  }
+);

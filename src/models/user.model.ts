@@ -1,46 +1,46 @@
-import { Optional, Model, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, BuildOptions, Sequelize, DataTypes } from "sequelize";
-import { UserOtpModel } from "./user-otp.model";
+import {
+  Association,
+  DataTypes,
+  HasManyCreateAssociationMixin,
+  HasManyGetAssociationsMixin,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  NonAttribute,
+} from "sequelize";
+import { UserOtp } from ".";
+import { dbConfig } from "./config";
 
-export interface UserAttributes {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  role?: string;
-  profilePic?: string;
-  passwordHash?: string;
-  address?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
-export interface UserCreationAttributes extends Optional<UserAttributes, "id"> { }
-
-export class UserModel extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
-  id!: number;
-  name!: string;
-  email!: string;
-  phone!: string;
-  role!: string;
-  profilePic!: string;
-  passwordHash!: string;
-  address!: string;
+export class User extends Model<
+  InferAttributes<User, { omit: "userOtps" }>,
+  InferCreationAttributes<User, { omit: "userOtps" }>
+> {
+  declare id: CreationOptional<number>;
+  declare name: string;
+  declare email: string;
+  declare phone: string;
+  declare role: CreationOptional<string>;
+  declare profilePic: CreationOptional<string>;
+  declare passwordHash: CreationOptional<string>;
+  declare address: CreationOptional<string>;
 
   // timestamps!
-  readonly createdAt!: Date;
-  readonly updatedAt!: Date;
+  declare readonly createdAt: CreationOptional<Date>;
+  declare readonly updatedAt: CreationOptional<Date>;
 
-  public createOtp!: HasManyCreateAssociationMixin<UserOtpModel>;
-  public getOtps!: HasManyGetAssociationsMixin<UserOtpModel>;
+  declare getOtps: HasManyGetAssociationsMixin<UserOtp>;
+  declare createOtp: HasManyCreateAssociationMixin<UserOtp, "userId">;
 
+  declare userOtps?: NonAttribute<UserOtp[]>;
+
+  declare static associations: {
+    userOtps: Association<User, UserOtp>;
+  };
 }
 
-export type UserStatic = typeof Model & {
-  new(values?: object, options?: BuildOptions): UserModel;
-};
-
-export function UserFactory(config: Sequelize) {
-  return <UserStatic>config.define("users", {
+User.init(
+  {
     id: {
       type: DataTypes.BIGINT,
       autoIncrement: true,
@@ -61,10 +61,16 @@ export function UserFactory(config: Sequelize) {
     role: {
       allowNull: false,
       type: DataTypes.STRING(128),
-      defaultValue: 'end_user'
+      defaultValue: "end_user",
     },
     profilePic: DataTypes.STRING(128),
     passwordHash: DataTypes.STRING(128),
     address: DataTypes.TEXT,
-  });
-};
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+  },
+  {
+    tableName: "users",
+    sequelize: dbConfig,
+  }
+);

@@ -1,23 +1,28 @@
 import { Sequelize } from "sequelize";
 import { Response, Request } from "express";
 
-import { dbConfig } from "../models";
-import { User, UserModel } from "../models";
-import { ResourceNotFoundError, BadRequestError, NotAuthorizedError, InternalError, NotAuthenticatedError } from "../errors";
+import { User } from "../models";
+import {
+  ResourceNotFoundError,
+  BadRequestError,
+  NotAuthorizedError,
+  InternalError,
+  NotAuthenticatedError,
+} from "../errors";
+import { dbConfig } from "../models/config";
 
 interface CustomRequest {
-  body: any,
-  params: any,
-  query: any
+  body: any;
+  params: any;
+  query: any;
 }
 
 export default class BaseController {
-
   private expressRequest: Request;
   request: CustomRequest;
   response: Response;
   models: Sequelize;
-  currentUser: UserModel;
+  currentUser: User;
   private requestingUserEmail: any;
 
   constructor(req: any, res: any) {
@@ -25,7 +30,7 @@ export default class BaseController {
     this.request = {
       body: req.body,
       params: req.params,
-      query: req.query
+      query: req.query,
     };
 
     this.response = res;
@@ -62,8 +67,8 @@ export default class BaseController {
   async _fetchCurrentUser() {
     let user = await User.findOne({
       where: {
-        email: this.requestingUserEmail
-      }
+        email: this.requestingUserEmail,
+      },
     });
     if (user) {
       this.currentUser = user;

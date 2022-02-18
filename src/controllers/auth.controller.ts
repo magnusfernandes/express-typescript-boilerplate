@@ -2,7 +2,6 @@ import BaseController from "./base.controller";
 import { AuthActions } from "../actions";
 
 export class AuthController extends BaseController {
-
   constructor(req: any, res: any) {
     super(req, res);
   }
@@ -11,7 +10,7 @@ export class AuthController extends BaseController {
     try {
       let respPayload = await AuthActions.signin(this.request.body);
       this.respondWithSuccess(respPayload);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
       this.respondWithError(err);
     }
@@ -21,7 +20,7 @@ export class AuthController extends BaseController {
     try {
       let respPayload = await AuthActions.signup(this.request.body);
       this.respondWithSuccess(respPayload);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
       this.respondWithError(err);
     }
@@ -31,7 +30,7 @@ export class AuthController extends BaseController {
     try {
       let respPayload = await AuthActions.verifyOtp(this.request.body);
       this.respondWithSuccess(respPayload);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
       this.respondWithError(err);
     }

@@ -1,29 +1,31 @@
-import passport from 'passport';
-import passportJWT from 'passport-jwt';
-import { User } from './src/models';
-import config from './config';
+import passport from "passport";
+import passportJWT from "passport-jwt";
+
+import config from "./config";
+import { User } from "./src/models";
 
 const ExtractJwt = passportJWT.ExtractJwt;
 const JwtStrategy = passportJWT.Strategy;
 
-let jwtOptions: passportJWT.StrategyOptions = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("JWT")
-};
-jwtOptions.secretOrKey = config.secret;
-
-const strategy = new JwtStrategy(jwtOptions, (jwt_payload, next) => {
-  User.findOne({
-    where: {
-      id: jwt_payload.id
-    }
-  }).then((user) => {
-    if (user) {
-      next(null, user);
-    } else {
-      next(null, false);
-    }
-  });
-});
+const strategy = new JwtStrategy(
+  {
+    secretOrKey: config.secret,
+    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("JWT"),
+  },
+  (jwt_payload, next) => {
+    User.findOne({
+      where: {
+        id: jwt_payload.id,
+      },
+    }).then((user) => {
+      if (user) {
+        next(null, user);
+      } else {
+        next(null, false);
+      }
+    });
+  }
+);
 
 passport.use(strategy);
 
